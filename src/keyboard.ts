@@ -1,15 +1,16 @@
 import Cover from "./cover"
+import {KeyBoardState} from "./keyboard-state";
 
 // Languages
 
-const board = {
+export const board = {
   'letter1': 'q',
   'letter2': 'w',
   'Lang': 'Lang',
   'Backspace': 'Backspace'
 }
 
-const boardRU = {
+export const boardRU = {
   'letter1': 'й',
   'letter2': 'ц',
   'Lang': 'Lang',
@@ -21,29 +22,38 @@ const boardRU = {
 export class KeyBoard extends Cover {
   private output: Output;
   private board: Board;
-  private langs = [
-    board,
-    boardRU
-  ];
+  // private langs = [
+  //   board,
+  //   boardRU
+  // ];
   private langIndex = 0;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, state: KeyBoardState) {
     super(parentNode);
+// 
+    state.onChange.add((data) => {
+      this.output.content = data.content;
+      this.board.changeLang(state.langs[data.langIndex])
+    })
+// 
     this.output = new Output(this.node)
-    this.board = new Board(this.node, this.langs[this.langIndex], (change) => {
-      this.output.content += change
-    });
 
-    // Language changing
-    this.board.nextLang = () => {
-      this.langIndex = (this.langIndex + 1) % this.langs.length;
-      this.board.changeLang(this.langs[this.langIndex])
-    }
+    this.board = new Board(this.node, state.langs[this.langIndex], state);
 
-    // Letter deleting
-    this.board.backSpace = () => {
-      this.output.content = this.output.content.slice(0, -1);
-    }
+    // this.board = new Board(this.node, this.langs[this.langIndex], (change) => {
+    //   this.output.content += change
+    // });
+
+    // // Language changing
+    // this.board.nextLang = () => {
+    //   this.langIndex = (this.langIndex + 1) % this.langs.length;
+    //   this.board.changeLang(this.langs[this.langIndex])
+    // }
+
+    // // Letter deleting
+    // this.board.backSpace = () => {
+    //   this.output.content = this.output.content.slice(0, -1);
+    // }
 
     document.addEventListener('keydown', (el) => {
       console.log(el.code)
@@ -64,24 +74,22 @@ export class Board extends Cover {
   nextLang: () => void;
   backSpace: () => void;
 
-  constructor(parentNode: HTMLElement, boardCon: Record<string, string>, input: (change: string) => void) {
+  constructor(parentNode: HTMLElement, boardCon: Record<string, string>, state: KeyBoardState/* input: (change: string) => void */) {
     super(parentNode);
 
     for (let keyIn in boardCon) {
       let key: Key = null
       switch (keyIn) {
         case 'Lang':
-          key = new Key(this.node, boardCon[keyIn], (change) => {
-            this.nextLang()
-          });
+          key = new KeyLang(this.node, boardCon[keyIn], state);
           break;
           case 'Backspace':
-          key = new Key(this.node, boardCon[keyIn], (change) => {
-            this.backSpace()
-          });
+          key = new KeyBackSpace(this.node, boardCon[keyIn], state)
           break;
         default:
-          key = new Key(this.node, boardCon[keyIn], (change) => {input(change)});
+          key = new Key(this.node, boardCon[keyIn], state/* (change) => {
+            // input(change)
+          }*/);
       }
       this.mapKey[keyIn] = key
     }
@@ -106,13 +114,13 @@ export class Board extends Cover {
 
 export class Key extends Cover {
 
-  private input: (change: string) => void
+  // private input: (change: string) => void
   private data: string;
 
-  constructor(parentNode: HTMLElement, data: string, input: (change: string) => void) {
+  constructor(parentNode: HTMLElement, data: string, protected state: KeyBoardState) {
     super(parentNode);
     this.data = data;
-    this.input = input;
+    // this.input = input;
     this.node.textContent = data
 
     this.node.onmousedown = () => {
@@ -123,12 +131,17 @@ export class Key extends Cover {
     }
   }
 
-  handleDown() {this.input(this.data)}
+  handleDown() {
+    // this.input(this.data)
+  }
+
 
   handleUp() {}
 
   protected inputLang() {
-    this.input(this.data)
+    // this.input(this.data)
+    const state = this.state;
+    state.info = {...state.info, content: state.info.content + this.data}
   }
 
   setLang(data: string) {
@@ -137,8 +150,27 @@ export class Key extends Cover {
   }
 }
 
-class KeyLang extends Key{
-}
+class KeyLang extends Key {
+  protected input() {
+    // this.input(this.data)
+    const state = this.state;
+    state.info = {
+      ...state.info, 
+      langIndex: (state.info.langIndex + 1) % state.langs.length
+    }
+  }
+} 
+
+class KeyBackSpace extends Key {
+  protected input() {
+    // this.input(this.data)
+    const state = this.state;
+    state.info = {
+      ...state.info, 
+      content: state.info.content.slice(0, -1)
+    }
+  }
+} 
 
 export class Output extends Cover {
   private _content: string = '';
