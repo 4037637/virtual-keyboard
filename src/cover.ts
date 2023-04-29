@@ -1,3 +1,5 @@
+// Cover class for keyboard
+
 class Cover <NodeType extends HTMLElement = HTMLElement> {
   public node: NodeType;
 
