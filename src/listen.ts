@@ -9,7 +9,7 @@ class Listen <ListenerType> {
   }
 
   remove(listener: (parameters: ListenerType) => void) {
-    this.listeners = this.listeners.filter((elem) => elem !== listener)
+    this.listeners = this.listeners.filter((el) => el !== listener)
   }
 
   edit(parameters: ListenerType) {

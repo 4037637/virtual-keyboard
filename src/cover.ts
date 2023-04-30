@@ -20,4 +20,4 @@ class Cover <NodeType extends HTMLElement = HTMLElement> {
   }
 }
 
-export default Cover;
+export default Cover; 
