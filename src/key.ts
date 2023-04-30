@@ -16,11 +16,6 @@ export class Key extends Cover {
       }, {once: true});
     }
 
-    /*this.node.onmouseup = () => {
-      this.input();
-      this.up()
-    }*/
-
     this.node.onmouseenter = () => {
       this.node.classList.add('keyboard_key_hover');
     }
