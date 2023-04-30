@@ -23,7 +23,7 @@ export class Board extends Cover {
   constructor(parentNode: HTMLElement, layoutConfig: Array<Array<string>>, state: KeyBoardState) {
     super(parentNode);
       layoutConfig.forEach(row=>{
-        const rowView = new Cover(this.node);
+        const rowView = new Cover(this.node, 'div', 'keyboard_row');
         row.forEach(keyIn=>{
           const KeyConstructor = classMap[keyIn] || Key;
           const key = new KeyConstructor(rowView.node, keyIn, state)
