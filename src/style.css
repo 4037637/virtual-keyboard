@@ -9,7 +9,7 @@
 
 .keyboard_key {
   margin: 2px;
-  background-color: #000;
+  background-color: rgb(16, 8, 53);
   color: #fff;
   padding: 5px;
   flex-basis: 100%;
@@ -22,16 +22,16 @@
   flex-basis: 400%
 }
 
-.keyboard_key__double {
-  flex-basis: 200%;
-}
-
 .keyboard_key__hover {
-  background-color: #222;
+  background-color: rgb(10, 58, 55);
 }
 
 .keyboard_key__down {
   transform: scale(0.9);
+}
+
+.keyboard_key__pressed {
+  background-color: rgb(175, 91, 13);
 }
 
 .keyboard_wrapper {
@@ -41,18 +41,4 @@
 .keyboard_output {
   border: 1px solid;
   min-height: 100px;
-}
-
-.key-word {
-  font-weight: bold;
-}
-
-.line-index {
-  width: 50px;
-  text-align: end;
-  margin-right: 10px;
-}
-
-.code-line {
-  display: flex;
 }

@@ -17,12 +17,23 @@ export class Key extends Cover {
     };
 
     this.node.onmouseenter = () => {
-      this.node.classList.add("keyboard_key_hover");
+      this.node.classList.add("keyboard_key__hover");
     };
 
     this.node.onmouseleave = () => {
-      this.node.classList.remove("keyboard_key_hover");
+      this.node.classList.remove("keyboard_key__hover");
     };
+  }
+
+  handleDownHighlight() {
+    this.highlight()
+    this.input();
+    this.down();
+  }
+
+  handleUpHighlight() {
+    this.unhighlight()
+    this.up();
   }
 
   handleDown() {
@@ -34,17 +45,25 @@ export class Key extends Cover {
     this.up();
   }
 
+  protected highlight() {
+    this.node.classList.add("keyboard_key__pressed");
+  }
+
+  protected unhighlight() {
+    this.node.classList.remove("keyboard_key__pressed");
+  }
+
   protected input() {
     const state = this.state;
     this.state.data = {...this.state.data, content: state.data.content + this.data};
   }
 
   protected up() {
-    this.node.classList.remove("keyboard_key_down");
+    this.node.classList.remove("keyboard_key__down");
   }
 
   protected down() {
-    this.node.classList.add("keyboard_key_down");
+    this.node.classList.add("keyboard_key__down");
   }
 
   setData(data: string) {

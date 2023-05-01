@@ -1,8 +1,8 @@
+console.log('I work')
+
 import {KeyBoard} from "./keyboard";
 import {KeyBoardState, NKeyBoardData} from "./state";
 import "./style.css";
-
-console.log("I am here");
 
 const def: NKeyBoardData = {
   content: "",

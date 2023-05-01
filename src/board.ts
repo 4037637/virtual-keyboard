@@ -5,15 +5,23 @@ import {KeyBackSpace} from "./keyBackSpace";
 import {KeyShift} from "./keyShift";
 import {KeyCapsLock} from "./keyCapsLock";
 import {KeyTabulation} from "./keyTabulation";
+import {KeyAlt} from "./keyAlt";
+import {KeyControl} from "./keyControl";
+import {KeyEnter} from "./keyEnter";
 import { KeyBoardState } from "./state";
 
 const classMap: Record<string, typeof Key> = {
   "Lang": KeyLang,
-  "BackSpace": KeyBackSpace,
+  "Backspace": KeyBackSpace,
   "ShiftLeft": KeyShift,
   "ShiftRight": KeyShift,
   "CapsLock": KeyCapsLock,
-  "Tab": KeyTabulation
+  "Tab": KeyTabulation,
+  "Enter": KeyEnter,
+  "AltLeft": KeyAlt,
+  "AltRight": KeyAlt,
+  "ControlLeft": KeyControl,
+  "ControlRight": KeyControl
 };
 
 export class Board extends Cover {
@@ -43,14 +51,14 @@ export class Board extends Cover {
   handleDown(elemCode: string) {
     const currKey = this.mapKey[elemCode];
     if (currKey) {
-      currKey.handleDown();
+      currKey.handleDownHighlight();
     }
   }
 
   handleUp(elemCode: string) {
     const currKey = this.mapKey[elemCode];
     if (currKey) {
-      currKey.handleUp();
+      currKey.handleUpHighlight();
     }
   }
 }
