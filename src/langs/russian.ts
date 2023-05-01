@@ -51,18 +51,18 @@ const base = {
     "Comma": "б",
     "Period": "ю",
     "Slash": ".",
-    "ArrowUp": "",
+    "ArrowUp": "↑",
     "ShiftRight": "Shift",
     "ControlLeft": "Ctrl",
     "AltLeft": "Alt",
     "Space": " ",
     "AltRight": "Alt",
     "ControlRight": "Ctrl",
-    "ArrowLeft": "",
-    "ArrowDown": "",
-    "ArrowRight": "",
+    "ArrowLeft": "←",
+    "ArrowDown": "↓",
+    "ArrowRight": "→",
     "Lang": "Язык",
-}
+};
 
 const shift = {
   "Backquote": "Ё",
@@ -117,18 +117,18 @@ const shift = {
     "Comma": "Б",
     "Period": "Ю",
     "Slash": ",",
-    "ArrowUp": "",
+    "ArrowUp": "↑",
     "ShiftRight": "Shift",
     "ControlLeft": "Ctrl",
     "AltLeft": "Alt",
     "Space": " ",
     "AltRight": "Alt",
     "ControlRight": "Ctrl",
-    "ArrowLeft": "",
-    "ArrowDown": "",
-    "ArrowRight": "",
+    "ArrowLeft": "←",
+    "ArrowDown": "↓",
+    "ArrowRight": "→",
     "Lang": "Язык",
-}
+};
 
 const caps = {
   "Backquote": "Ё",
@@ -183,18 +183,18 @@ const caps = {
     "Comma": "Б",
     "Period": "Ю",
     "Slash": ".",
-    "ArrowUp": "",
+    "ArrowUp": "↑",
     "ShiftRight": "Shift",
     "ControlLeft": "Ctrl",
     "AltLeft": "Alt",
     "Space": " ",
     "AltRight": "Alt",
     "ControlRight": "Ctrl",
-    "ArrowLeft": "",
-    "ArrowDown": "",
-    "ArrowRight": "",
+    "ArrowLeft": "←",
+    "ArrowDown": "↓",
+    "ArrowRight": "→",
     "Lang": "Язык",
-}
+};
 
 export default {base, shift, caps};
 

@@ -1,7 +1,7 @@
 class Listen <ListenerType> {
   private listeners: Array<(parameters: ListenerType) => void>;
   constructor() {
-    this.listeners = []
+    this.listeners = [];
   }
 
   add(listener: (parameters: ListenerType) => void) {
@@ -9,7 +9,7 @@ class Listen <ListenerType> {
   }
 
   remove(listener: (parameters: ListenerType) => void) {
-    this.listeners = this.listeners.filter((el) => el !== listener)
+    this.listeners = this.listeners.filter((el) => el !== listener);
   }
 
   edit(parameters: ListenerType) {

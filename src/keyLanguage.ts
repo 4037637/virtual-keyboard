@@ -6,6 +6,6 @@ export class KeyLang extends Key{
     state.data = {
       ...state.data,
       langIndex: (state.data.langIndex + 1) % state.langs.length
-    }
+    };
   }
 }

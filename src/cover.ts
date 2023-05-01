@@ -3,13 +3,13 @@
 class Cover <NodeType extends HTMLElement = HTMLElement> {
   public node: NodeType;
 
-  constructor (parentNode: HTMLElement | null, tagName = 'div', className = '', content = '') {
+  constructor (parentNode: HTMLElement | null, tagName = "div", className = "", content = "") {
     const elem = document.createElement(tagName);
     elem.className = className;
     elem.innerHTML = content;
 
     if (parentNode) {
-      parentNode.append(elem)
+      parentNode.append(elem);
     }
 
     this.node = elem as NodeType;

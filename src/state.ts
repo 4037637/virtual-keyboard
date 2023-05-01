@@ -1,6 +1,6 @@
 import Listen from "./listen";
-import board from "./langs/english"
-import board1 from "./langs/russian"
+import board from "./langs/english";
+import board1 from "./langs/russian";
 
 export interface NKeyBoardData {
   content: string;
@@ -18,12 +18,12 @@ export class KeyBoardState {
   private _data: NKeyBoardData;
 
   get data() {
-    return this._data
+    return this._data;
   }
 
   set data(val: NKeyBoardData) {
     this._data = val;
-    this.onChange.edit(this.data)
+    this.onChange.edit(this.data);
   }
 
   constructor (init: NKeyBoardData) {

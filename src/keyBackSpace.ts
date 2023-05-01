@@ -7,6 +7,6 @@ export class KeyBackSpace extends Key{
     this.state.data = {
       ...state.data,
       content: state.data.content.slice(0, -1)
-    }
+    };
   }
 }

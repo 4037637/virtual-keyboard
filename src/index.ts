@@ -1,13 +1,15 @@
 import {KeyBoard} from "./keyboard";
 import {KeyBoardState, NKeyBoardData} from "./state";
-import './style.css';
+import "./style.css";
+
+console.log("I am here");
 
 const def: NKeyBoardData = {
   content: "",
   langIndex: 0,
   shift: false,
   caps: false
-}
+};
 
 class KeyBoardInfo implements NKeyBoardData{
   content: string;
@@ -15,10 +17,10 @@ class KeyBoardInfo implements NKeyBoardData{
   shift: boolean;
   caps: boolean;
   constructor(info: NKeyBoardData) {
-    if (typeof info.content != 'string') throw new Error('Wrong content type. It should be "string"!')
-    if (typeof info.langIndex != 'number') throw new Error('Wrong langIndex type. It should be "number"!')
-    if (typeof info.shift != 'boolean') throw new Error('Wrong shift type. It should be "boolean"!')
-    if (typeof info.caps != 'boolean') throw new Error('Wrong caps type. It should be "boolean"!')
+    if (typeof info.content != "string") throw new Error("Wrong content type. It should be 'string'!");
+    if (typeof info.langIndex != "number") throw new Error("Wrong langIndex type. It should be 'number'!");
+    if (typeof info.shift != "boolean") throw new Error("Wrong shift type. It should be 'boolean'!");
+    if (typeof info.caps != "boolean") throw new Error("Wrong caps type. It should be 'boolean'!");
 
     this.content = info.content;
     this.langIndex = info.langIndex;
@@ -27,21 +29,21 @@ class KeyBoardInfo implements NKeyBoardData{
   }
 
   static loadInfo() {
-    const local = localStorage.getItem('localState')
+    const local = localStorage.getItem("localState");
     return new KeyBoardInfo(JSON.parse(local));
   }
 
   saveInfo() {
-    localStorage.setItem('localState', JSON.stringify(this));
+    localStorage.setItem("localState", JSON.stringify(this));
   }
 }
 
 let info: KeyBoardInfo;
 try {
-  info = KeyBoardInfo.loadInfo()
+  info = KeyBoardInfo.loadInfo();
 }
 catch(el) {
-  info = new KeyBoardInfo(def)
+  info = new KeyBoardInfo(def);
 }
 
 const state = new KeyBoardState(info);
@@ -52,4 +54,4 @@ const keyboard = new KeyBoard(document.body, state);
 
 window.onbeforeunload = () => {
   new KeyBoardInfo(state.data).saveInfo();
-}
+};
