@@ -55,3 +55,13 @@ const keyboard = new KeyBoard(document.body, state);
 window.onbeforeunload = () => {
   new KeyBoardInfo(state.data).saveInfo();
 };
+
+let finalElem = document.createElement("p")
+let finalElemText = document.createTextNode("Клавиатура создана в операционной системе Windows")
+finalElem.appendChild(finalElemText)
+document.body.appendChild(finalElem)
+
+finalElem = document.createElement("p")
+finalElemText = document.createTextNode("Для переключения языка используйте кнопку: Lang")
+finalElem.appendChild(finalElemText)
+document.body.appendChild(finalElem)

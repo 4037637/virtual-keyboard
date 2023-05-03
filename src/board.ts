@@ -21,7 +21,7 @@ const classMap: Record<string, typeof Key> = {
   "AltLeft": KeyAlt,
   "AltRight": KeyAlt,
   "ControlLeft": KeyControl,
-  "ControlRight": KeyControl
+  "ControlRight": KeyControl,
 };
 
 export class Board extends Cover {
